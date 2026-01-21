@@ -2,7 +2,6 @@ import { getConfig, getMetadata } from '../../scripts/ak.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { setColorScheme } from '../section-metadata/section-metadata.js';
 
-const { locale } = getConfig();
 
 const HEADER_PATH = '/fragments/nav/header';
 const HEADER_ACTIONS = [
@@ -40,7 +39,8 @@ function decorateLanguage(btn) {
   const section = btn.closest('.section');
   btn.addEventListener('click', async () => {
     let menu = section.querySelector('.language.menu');
-    if (!menu) {
+    if (!menu) {      
+      const { locale } = getConfig();
       const content = document.createElement('div');
       content.classList.add('block-content');
       const fragment = await loadFragment(`${locale.prefix}${HEADER_PATH}/languages`);
@@ -184,6 +184,7 @@ async function decorateHeader(fragment) {
  * @param {Element} el The header element
  */
 export default async function init(el) {
+  const { locale } = getConfig();
   const headerMeta = getMetadata('header');
   const path = headerMeta || HEADER_PATH;
   try {

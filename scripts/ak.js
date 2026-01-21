@@ -26,7 +26,11 @@ export const [setConfig, getConfig] = (() => {
       };
       return config;
     },
-    () => (config || setConfig()),
+    () => {
+      if (!config) return setConfig();
+      config.locale = getLocale(config.locales);
+      return config;
+    },
   ];
 })();
 
