@@ -8,10 +8,18 @@ export function getMetadata(name) {
 
 export function getLocale(locales) {
   const { pathname } = window.location;
-  const matches = Object.keys(locales).filter((locale) => pathname.startsWith(`${locale}/`));
-  const prefix = getMetadata('locale') || matches.sort((a, b) => b.length - a.length)?.[0] || '';
-  if (locales[prefix].lang) document.documentElement.lang = locales[prefix].lang;
-  return { prefix, ...locales[prefix] };
+  const normalize = (key) => {
+    if (!key) return '';
+    return key.startsWith('/') ? key : `/${key}`;
+  };
+
+  const keys = Object.keys(locales);
+  const matches = keys.map((k) => normalize(k)).filter((k) => k !== '' && pathname.startsWith(`${k}/`))
+    .sort((a, b) => b.length - a.length);
+  const prefix = getMetadata('locale') || matches[0] || '';
+  const localeData = locales[prefix] || locales[prefix.replace(/^\//, '')] || locales[''] || {};
+  if (localeData.lang) document.documentElement.lang = localeData.lang;
+  return { prefix, ...localeData };
 }
 
 export const [setConfig, getConfig] = (() => {
