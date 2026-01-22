@@ -4,13 +4,28 @@ const hostnames = ['authorkit.dev'];
 
 const locales = {
   '': { lang: 'en' },
-  '/at/de': { lang: 'de' },
   '/de': { lang: 'de' },
+  '/de/de': { lang: 'de' },
+  '/at/de': { lang: 'de' },
+  '/ch/de': { lang: 'de' },
+  '/ch/fr': { lang: 'fr' },
   '/es': { lang: 'es' },
+  '/es/es': { lang: 'es' },
+  '/mx/es': { lang: 'es' }, 
+  '/us/es': { lang: 'es' },
   '/fr': { lang: 'fr' },
+  '/ca/fr': { lang: 'fr' },
+  '/it/it': { lang: 'it' },
+  '/ch/it': { lang: 'it' },
+  '/at/it': { lang: 'it' },
   '/hi': { lang: 'hi' },
+  '/in/hi': { lang: 'hi' },
   '/ja': { lang: 'ja' },
+  '/jp/ja': { lang: 'ja' },
   '/zh': { lang: 'zh' },
+  '/cn/zh': { lang: 'zh' },
+  '/sg/zh': { lang: 'zh' },
+  '/hk/zh': { lang: 'zh' }
 };
 
 // Widget patterns to look for
